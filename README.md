@@ -4,7 +4,9 @@
 
 站点文件在 `public/`，推送到 `main` 后由 GitHub Actions 自动发布到 GitHub Pages。
 
-预计访问地址：<https://ganuidjskd11-afk.github.io/personal-homepage/>
+远端仓库名：`xzhomepage`　本地目录：`D:\work\personal-homepage`（两者不必一致）
+
+预计访问地址：<https://ganuidjskd11-afk.github.io/xzhomepage/>
 
 ## 本地预览
 
@@ -18,10 +20,17 @@ python -m http.server 8000 --directory public
 
 ## 部署步骤（只需做一次）
 
-1. 在 GitHub 新建仓库 `personal-homepage`，设为 **Public**，**不要**勾选 Add README / .gitignore / license，保持空仓库。
-   可以直接打开这个预填好参数的链接：<https://github.com/new?name=personal-homepage&description=Personal%20homepage&visibility=public>
-2. 仓库 **Settings -> Pages -> Build and deployment -> Source** 选择 **GitHub Actions**。
-   （这一步关键：不选的话 workflow 会报 "pages deployment not enabled"。）
+1. 在 GitHub 新建仓库 `xzhomepage`，设为 **Public**，**不要**勾选 Add README / .gitignore / license，保持空仓库。
+   预填参数的链接：<https://github.com/new?name=xzhomepage&description=Personal%20homepage&visibility=public>
+2. 创建完成后打开 <https://github.com/ganuidjskd11-afk/xzhomepage/settings/pages>，
+   也就是仓库 **Settings → 左侧 Code and automation / 代码和自动化 → Pages / 页面**。
+   在 **Build and deployment / 生成和部署** 里，把 **Source / 源** 那个**下拉框点开**；
+   里面有 `Deploy from a branch` 和 `GitHub Actions` 两项，选 **GitHub Actions**，页面会自动保存。
+
+   - 仓库还没创建时这个设置页根本不存在，这是「找不到 GitHub Actions 选项」最常见的原因。
+   - 下拉框默认显示 `Deploy from a branch`，不点开看起来就像只有一个选项。
+   - 如果刚建的空仓库暂时没显示 Source 下拉，先做第 3 步 push 一次，再回来刷新。
+   - 这一步只能在网页做：工作流里的 `GITHUB_TOKEN` 是仓库管理权限，`configure-pages` 无法代替它创建 Pages 站点。
 3. 本地推送（仓库已 `git init`、已设好 `origin`、已有首次提交）：
 
    ```bash
@@ -29,7 +38,9 @@ python -m http.server 8000 --directory public
    git push -u origin main
    ```
 
-4. 打开仓库的 **Actions** 页，等 `Deploy to GitHub Pages` 跑完（通常不到一分钟），访问上面的地址即可。
+   创建仓库后 GitHub 会显示一段 Quick setup 命令，**不要照抄**（那是给空仓库初始化 README 用的），只跑上面这一行。
+4. 打开 <https://github.com/ganuidjskd11-afk/xzhomepage/actions>，等 `Deploy to GitHub Pages` 跑完（通常不到一分钟）。
+   如果第一次运行时 Pages 还没启用导致失败，点 **Re-run all jobs** 重跑一次即可。
 
 之后每次 `git push` 到 `main` 都会自动重新部署；也可以在 Actions 页手动 `Run workflow`。
 
@@ -50,7 +61,7 @@ git config --local core.sshCommand "ssh -i C:/Users/WIT_User/.ssh/github_ganui -
 | 步骤 | 作用 |
 | :--- | :--- |
 | `actions/checkout@v4` | 拉代码 |
-| `actions/configure-pages@v5` | 启用并配置 Pages |
+| `actions/configure-pages@v5` | 读取 Pages 站点配置（站点需已在网页启用） |
 | `actions/upload-pages-artifact@v3` | 把 `public/` 打包成站点产物 |
 | `actions/deploy-pages@v4` | 发布，输出 `page_url` |
 
@@ -78,7 +89,7 @@ git config --local core.sshCommand "ssh -i C:/Users/WIT_User/.ssh/github_ganui -
 ## 目录结构
 
 ```
-personal-homepage/
+D:/work/personal-homepage/        # 本地目录；远端仓库名为 xzhomepage
 ├── .github/workflows/deploy.yml   # 自动部署
 ├── public/                       # 实际发布的站点根目录
 │   ├── index.html
@@ -87,12 +98,14 @@ personal-homepage/
 │       ├── css/style.css
 │       ├── js/main.js
 │       └── img/favicon.svg
+├── .gitattributes
 ├── .gitignore
 └── README.md
 ```
 
 ## 注意
 
-- 站点资源全部用相对路径，因此部署在 `/personal-homepage/` 子路径下也不会失效。
+- 站点资源全部用相对路径，因此部署在 `/xzhomepage/` 子路径下也不会失效。
+- 站点 URL 由**远端仓库名**决定，改仓库名就要同步改 Pages 里显示的访问地址。
 - GitHub Pages 免费计划只支持从公开仓库发布；站点上限 1 GB，带宽软限制 100 GB/月。
 - 纯静态托管，没有后端、数据库或服务端接口。
