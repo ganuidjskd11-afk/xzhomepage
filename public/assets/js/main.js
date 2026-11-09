@@ -86,6 +86,24 @@
     sections.forEach(function (section) { navObserver.observe(section); });
   }
 
+  /* ---------- 复制天翼云盘访问码 ---------- */
+  var copyBtn = document.getElementById('copyCode');
+  var copyHint = document.getElementById('copyHint');
+  if (copyBtn && copyHint) {
+    copyBtn.addEventListener('click', function () {
+      var code = copyBtn.getAttribute('data-code') || '';
+      function done(ok) {
+        copyHint.textContent = ok ? '已复制' : '请手动复制';
+        setTimeout(function () { copyHint.textContent = ''; }, 1800);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(function () { done(true); }, function () { done(false); });
+      } else {
+        done(false);
+      }
+    });
+  }
+
   /* ---------- 页脚年份 ---------- */
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());

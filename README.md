@@ -77,6 +77,11 @@ git config --local core.sshCommand "ssh -i C:/Users/WIT_User/.ssh/github_ganui -
 
 想微调版式或配色，改 `public/assets/css/style.css` 顶部的 `--primary`（竹青）与 `--accent`（暖金）两个变量即可；深浅色两套变量分别写在 `:root` 和 `[data-theme="dark"]` 里。
 
+## 下载按钮
+
+首屏「点击下载」指向天翼云盘分享：<https://cloud.189.cn/web/share?code=vYfE3e3IB3Q3>，访问码 `1le0`。
+链接在 `public/index.html` 的 `.btn-download`；访问码同时写在 `.code-copy` 的 `data-code` 和按钮文字里（两处要一致），点一下可复制，逻辑在 `public/assets/js/main.js`。换分享地址或访问码时改这几处即可。
+
 ## 自定义域名（可选）
 
 在仓库 **Settings -> Pages -> Custom domain** 填入域名，并按提示配置 DNS；同时在 `public/` 放一个纯文本的 `CNAME` 文件，内容只写域名一行。GitHub 会自动签发免费 HTTPS 证书。

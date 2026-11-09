@@ -136,7 +136,12 @@ ul, ol { padding: 0; list-style: none; }
 .accent { color: var(--primary); }
 .hero-role { font-size: 18px; font-weight: 600; margin-bottom: 14px; }
 .hero-desc { max-width: 540px; color: var(--muted); font-size: 15px; margin-bottom: 30px; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
+.btn-download svg { width: 16px; height: 16px; }
+.share-note { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 0 0 26px; font-size: 12px; color: var(--muted); }
+.code-copy { padding: 2px 9px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+.code-copy:hover { border-color: var(--primary); }
+.copy-hint { color: var(--primary); font-size: 12px; }
 .socials { display: flex; flex-wrap: wrap; gap: 8px; }
 .socials a {
   display: inline-flex; align-items: center; gap: 8px;
