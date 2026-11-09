@@ -1,6 +1,6 @@
 # 个人主页
 
-一份纯静态的中文个人主页模板：无框架、无构建步骤、无外部 CDN 依赖，深浅色主题、响应式布局、滚动入场动画都内置。
+「赛博修仙」的程序员个人主页：简约清新的竹青配色，无框架、无构建步骤、无外部 CDN 依赖，深浅色主题、响应式布局、滚动入场动画都内置。全站文案已按人设填好。
 
 站点文件在 `public/`，推送到 `main` 后由 GitHub Actions 自动发布到 GitHub Pages。
 
@@ -67,20 +67,15 @@ git config --local core.sshCommand "ssh -i C:/Users/WIT_User/.ssh/github_ganui -
 
 用的是官方 artifacts 部署通道，不走 Jekyll 构建，所以不需要 `_config.yml`。`.nojekyll` 作为保险保留在 `public/`。
 
-## 需要替换的内容
+## 只剩这一处需要你替换
 
-`public/index.html` 里凡是有 `<!-- 替换这里：... -->` 注释的地方：
+页面全部文案已按「赛博修仙」的程序员人设填好，唯一需要你提供的是**邮箱地址**：
 
-- `<title>` / description / keywords
-- 品牌首字母（`.brand-mark`）、姓名、头像里的 `N`
-- 首屏状态、身份定位、自我介绍、所在城市
-- 三个社交链接（GitHub / 邮箱 / Telegram）
-- 关于正文、技能标签、三个统计数字
-- 三张项目卡片（复制 `<article class="card">` 可继续加）
-- 时间线三条记录
-- 联系邮箱、页脚署名
+- 在 `public/index.html` 里搜索 `hello@example.com`，共 2 处（首屏社交区、联系区按钮），换成你的真实邮箱。
+- Telegram 暂用 `https://t.me/xiaozhuzhuxz`（沿用旧站），不需要就删掉那个 `<li>` 或改链接。
+- 三张作品卡片的链接目前都指向 GitHub 主页，有具体仓库时把 `href` 换成仓库地址。
 
-改主题色只需改 `public/assets/css/style.css` 顶部的 `--primary` 和 `--accent` 两个变量。
+想微调版式或配色，改 `public/assets/css/style.css` 顶部的 `--primary`（竹青）与 `--accent`（暖金）两个变量即可；深浅色两套变量分别写在 `:root` 和 `[data-theme="dark"]` 里。
 
 ## 自定义域名（可选）
 
